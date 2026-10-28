@@ -40,7 +40,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/Snipa22/go-xmr-lib/support"
+	"github.com/Jagtech-Services/go-xmr-lib/support"
 )
 
 // BreakerThreshold/BreakerCooldown tune Breaker: after this many

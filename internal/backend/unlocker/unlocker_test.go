@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/chain"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/chain"
 )
 
 // fakeRepo is an in-memory Repository test double.

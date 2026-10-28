@@ -81,7 +81,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/db"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/db"
 )
 
 // blockPayoutCLITimeout mirrors payoutCLITimeout/blockCLITimeout --

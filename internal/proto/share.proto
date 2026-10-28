@@ -34,7 +34,7 @@
 //
 // NOTE on C29Proof: field shapes were checked against the real Tari C29
 // miner implementation (go-tari-c29-solo-stratum's SubmitJob, via
-// snipa22/powkit's cuckoo.Client.Verify) as part of building the
+// Jagtech-Services/powkit's cuckoo.Client.Verify) as part of building the
 // internal/leaflib/validator package. `edge_bits` + repeated `cycle` (the
 // 42-edge Cuckaroo29 cycle, u64 edge nonces) matches the real proof shape.
 // `header` was ADDED here (it did not exist in the original placeholder)
@@ -49,7 +49,7 @@ syntax = "proto3";
 
 package pool.v1;
 
-option go_package = "github.com/Snipa22/go-crypto-pool/internal/proto;poolpb";
+option go_package = "github.com/Jagtech-Services/go-crypto-pool/internal/proto;poolpb";
 
 // Algo identifies the mining algorithm / share stream a message belongs
 // to. go-crypto-pool is an omni-pool serving all four from one backend,

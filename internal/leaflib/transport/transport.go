@@ -17,7 +17,7 @@ package transport
 import (
 	"context"
 
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // ShareTransport abstracts how a leaf hands a validated Share or Block

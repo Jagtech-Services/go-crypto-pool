@@ -12,11 +12,11 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus/testutil"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/addressflags"
-	directmetrics "github.com/Snipa22/go-crypto-pool/internal/leaflib/direct/metrics"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/solo"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/validator"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/addressflags"
+	directmetrics "github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/direct/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/solo"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/validator"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // assertOnlyDirectLoginRejectionReason mirrors

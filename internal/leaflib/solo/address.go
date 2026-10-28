@@ -5,11 +5,11 @@ import (
 	"errors"
 	"strings"
 
-	tariaddress "github.com/Snipa22/go-tari-lib/address"
-	xmraddress "github.com/Snipa22/go-xmr-lib/support"
+	tariaddress "github.com/Jagtech-Services/go-tari-lib/v3/address"
+	xmraddress "github.com/Jagtech-Services/go-xmr-lib/support"
 
-	"github.com/Snipa22/go-crypto-pool/internal/coinprofile"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/coinprofile"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // maxLoginAddressLen mirrors internal/backend/addressmap's own
@@ -32,7 +32,7 @@ const maxLoginAddressLen = 512
 //   - poolpb.Algo_ALGO_SHA3X, poolpb.Algo_ALGO_C29, poolpb.Algo_ALGO_RXT
 //     (Tari's three native PoW algos — see tariPowAlgo in node.go) all
 //     pay out to a Tari wallet address, validated via
-//     github.com/Snipa22/go-tari-lib/address.Parse: a byte-exact Go
+//     github.com/Jagtech-Services/go-tari-lib/v3/address.Parse: a byte-exact Go
 //     port of the real Tari Base Layer tari_address implementation
 //     that tries emoji, then base58, then hex encodings and verifies
 //     the DammSum checksum, network byte, features byte, and that the
@@ -41,7 +41,7 @@ const maxLoginAddressLen = 512
 //     length.
 //   - poolpb.Algo_ALGO_RXM (Monero merge-mining/native RandomX) pays
 //     out to a Monero wallet address, validated via
-//     github.com/Snipa22/go-xmr-lib/support's
+//     github.com/Jagtech-Services/go-xmr-lib/support's
 //     IsValidMainnet/IsValidTestnet: base58-decodes the address and
 //     verifies its trailing 4-byte Keccak checksum against the
 //     address's own payload, then confirms the leading network-tag

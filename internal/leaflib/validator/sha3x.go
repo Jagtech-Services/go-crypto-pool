@@ -9,7 +9,7 @@ import (
 
 	"github.com/holiman/uint256"
 
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // sha3xPowAlgoByte is the wire value of tari_generated's

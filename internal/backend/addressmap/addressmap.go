@@ -49,10 +49,10 @@ import (
 	"strings"
 	"time"
 
-	tariaddress "github.com/Snipa22/go-tari-lib/address"
-	xmraddress "github.com/Snipa22/go-xmr-lib/support"
+	tariaddress "github.com/Jagtech-Services/go-tari-lib/v3/address"
+	xmraddress "github.com/Jagtech-Services/go-xmr-lib/support"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/metrics"
 )
 
 // maxBodyBytes bounds how much of a POST body we will read. The
@@ -65,7 +65,7 @@ const maxBodyBytes = 1 << 16 // 64 KiB
 // absurdly long input before it reaches the real, coin-specific
 // byte-exact decoders (validateXMRAddress/validateTariAddress below)
 // -- those functions do the actual address-format verification via
-// github.com/Snipa22/go-xmr-lib and github.com/Snipa22/go-tari-lib
+// github.com/Jagtech-Services/go-xmr-lib and github.com/Jagtech-Services/go-tari-lib/v3
 // respectively; this constant is not itself a format validator.
 const maxAddressLen = 512
 
@@ -174,7 +174,7 @@ func validateAddress(field, addr string) error {
 }
 
 // validateTariAddress performs real, byte-exact Tari address
-// validation via github.com/Snipa22/go-tari-lib's address package --
+// validation via github.com/Jagtech-Services/go-tari-lib/v3's address package --
 // a byte-exact Go port of the real Tari Base Layer tari_address
 // implementation (see that package's doc comment). address.Parse
 // tries emoji, then base58, then hex encodings (mirroring Rust's
@@ -210,7 +210,7 @@ func validateTariAddress(addr string) error {
 }
 
 // validateXMRAddress performs real, checksum-verified Monero address
-// validation via github.com/Snipa22/go-xmr-lib's support package
+// validation via github.com/Jagtech-Services/go-xmr-lib's support package
 // (already a dependency of this repo's wallet-transfer engine, see
 // internal/backend/disburse). support.IsValidMainnet/IsValidTestnet
 // base58-decode the address and verify its trailing 4-byte Keccak

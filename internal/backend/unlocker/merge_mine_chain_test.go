@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/chain"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/chain"
 )
 
 // strp is a tiny *string helper for building Block.MergeMineChain

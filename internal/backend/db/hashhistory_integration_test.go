@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/db"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/db"
 )
 
 func setupHashHistorySchema(t *testing.T) (*db.Repository, context.Context) {

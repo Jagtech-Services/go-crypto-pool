@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/moneroblob"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/moneroblob"
 )
 
 // TestConvertTemplateBlobToHashingBlob_BreakerOpensAndShortCircuits

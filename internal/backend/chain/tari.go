@@ -7,13 +7,13 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/Snipa22/go-tari-grpc-lib/v3/nodeGRPC"
-	"github.com/Snipa22/go-tari-grpc-lib/v3/tari_generated"
+	"github.com/Jagtech-Services/go-tari-grpc-lib/v3/tari_generated"
+	"github.com/Jagtech-Services/go-tari-lib/v3/nodeGRPC"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
 
-// tariNodeRPC is the narrow slice of go-tari-grpc-lib/v3's nodeGRPC
+// tariNodeRPC is the narrow slice of go-tari-lib/v3's nodeGRPC
 // package-level API TariVerifier actually needs — GetHeaderByHash and
 // GetBlocks (wrapped by nodeGRPC as GetBlockByHeight, see node.go in
 // internal/leaflib/solo for the same wrapper already used by
@@ -29,18 +29,23 @@ type tariNodeRPC interface {
 }
 
 // tariNodeRPCAdapter adapts nodeGRPC's package-level functions to
-// tariNodeRPC. As of go-tari-grpc-lib/v3 v3.3.0, every one of these
-// package-level functions takes a leading context.Context (see
-// NewTariVerifier's doc comment) — this adapter passes straight
-// through whatever ctx its caller (Verify, below) supplies.
+// tariNodeRPC. As of go-tari-lib/v3 v3.2.0, GetHeaderByHash and
+// GetBlockByHeight do NOT have ctx-cancellable variants (unlike
+// GetTipInfo/SubmitBlock/GetNewBlockTemplateWithCoinbases, which
+// gained Ctx-suffixed counterparts — see internal/leaflib/solo/
+// node.go) — this adapter still accepts ctx (to satisfy tariNodeRPC
+// and so Verify's callWithContext wrapper below remains the real
+// cancellation mechanism for these two calls) but does not pass it
+// to the underlying package-level call, since there is nothing to
+// pass it to.
 type tariNodeRPCAdapter struct{}
 
 func (tariNodeRPCAdapter) GetHeaderByHash(ctx context.Context, hash []byte) (*tari_generated.BlockHeaderResponse, error) {
-	return nodeGRPC.GetHeaderByHash(ctx, hash)
+	return nodeGRPC.GetHeaderByHash(hash)
 }
 
 func (tariNodeRPCAdapter) GetBlockByHeight(ctx context.Context, heights []uint64) ([]*tari_generated.Block, error) {
-	return nodeGRPC.GetBlockByHeight(ctx, heights)
+	return nodeGRPC.GetBlockByHeight(heights)
 }
 
 // TariVerifier is the production ChainVerifier for ALGO_RXT/ALGO_C29/
@@ -58,7 +63,7 @@ type TariVerifier struct {
 // TariVerifier's worth of nodeGRPC usage should exist per process,
 // since InitNodeGRPC's connection is shared process-wide state.
 //
-// As of go-tari-grpc-lib/v3 v3.3.0, InitNodeGRPC itself returns an
+// As of go-tari-lib/v3 v3.2.0, InitNodeGRPC itself returns an
 // error (previously void) — a real dial-time failure (e.g. malformed
 // address) is now reported here instead of surfacing later as a
 // confusing failure from the first real RPC call made against an
@@ -98,28 +103,25 @@ func newTariVerifierWithRPC(rpc tariNodeRPC) *TariVerifier {
 //
 // // # ctx handling (PROD_HARDENING_REVIEW.md finding #20)
 //
-// As of go-tari-grpc-lib/v3 v3.3.0, v.rpc (nodeGRPC's package-level
-// GetHeaderByHash/GetBlockByHeight) DOES accept a leading
-// context.Context, and this method passes ctx straight through to
-// both calls (see tariNodeRPCAdapter) — a canceled/timed-out ctx now
-// genuinely cancels the in-flight GRPC call at the transport level,
-// not just this method's own wait on it.
+// Unlike GetTipInfo/SubmitBlock/GetNewBlockTemplateWithCoinbases
+// (which gained Ctx-suffixed, context-cancellable counterparts in
+// go-tari-lib/v3 v3.2.0 — see internal/leaflib/solo/node.go),
+// GetHeaderByHash and GetBlockByHeight have no such variant in this
+// version: they are plain package-level calls with no
+// context.Context parameter at all. tariNodeRPCAdapter (above) still
+// accepts ctx per the tariNodeRPC interface but has nothing to pass
+// it to.
 //
-// This method ALSO still races each call against ctx in its own
-// goroutine via callWithContext below. That defensive wrapper
-// predates v3.3.0's ctx support (see callWithContext's own doc
-// comment for the full original finding #20 rationale, when nodeGRPC
-// had no ctx parameter at all and this was the ONLY way to bound the
-// caller's wait) and is kept as belt-and-braces: it guarantees this
-// method's caller (the unlocker's poll pass) is unblocked promptly on
-// ctx cancellation even in the hypothetical case where the underlying
-// transport doesn't itself honor ctx cancellation as promptly as
-// expected (e.g. slow DNS resolution ahead of the actual RPC). With a
-// real, ctx-respecting connection this second layer should rarely if
-// ever actually win the race against the real RPC returning on its
-// own — but it costs nothing to keep and removes a way this method
-// could regress back to unbounded blocking if that assumption about
-// the underlying transport is ever wrong.
+// This method therefore still races each call against ctx in its own
+// goroutine via callWithContext below — for GetHeaderByHash/
+// GetBlockByHeight, this is now the ONLY cancellation mechanism (not
+// a defensive second layer on top of transport-level cancellation,
+// since the underlying calls don't support that at all): a
+// canceled/timed-out ctx unblocks this method's caller (the
+// unlocker's poll pass) promptly, but the underlying GRPC call
+// itself keeps running in its goroutine until it returns on its own
+// (see callWithContext's own doc comment for the full original
+// finding #20 rationale this predates).
 func (v *TariVerifier) Verify(ctx context.Context, hashHex string, height int64) (VerifyResult, error) {
 	if height < 0 {
 		return VerifyResult{}, fmt.Errorf("chain: tari: height must be non-negative, got %d", height)

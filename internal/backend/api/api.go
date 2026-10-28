@@ -44,9 +44,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/metrics"
-	"github.com/Snipa22/go-crypto-pool/internal/coinprofile"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/coinprofile"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 	"golang.org/x/time/rate"
 	"google.golang.org/protobuf/proto"
 )

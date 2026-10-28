@@ -22,7 +22,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-tari-grpc-lib/v3/tari_generated"
+	"github.com/Jagtech-Services/go-tari-grpc-lib/v3/tari_generated"
 )
 
 func requireNotBroadcast(t *testing.T, err error, what string) {

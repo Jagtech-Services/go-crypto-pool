@@ -9,7 +9,7 @@ import (
 	"log"
 	"testing"
 
-	"github.com/Snipa22/go-xmr-lib/support"
+	"github.com/Jagtech-Services/go-xmr-lib/support"
 )
 
 // discardLogger is a *log.Logger that throws away everything it's

@@ -7,7 +7,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/Snipa22/go-tari-grpc-lib/v3/tari_generated"
+	"github.com/Jagtech-Services/go-tari-grpc-lib/v3/tari_generated"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

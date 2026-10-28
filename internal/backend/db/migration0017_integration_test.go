@@ -16,8 +16,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/db"
-	"github.com/Snipa22/go-crypto-pool/internal/coinprofile"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/db"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/coinprofile"
 )
 
 // TestIntegrationMigration0017WidensCurrencyCheckConstraint is the

@@ -24,9 +24,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/db"
-	"github.com/Snipa22/go-crypto-pool/internal/backend/metrics"
-	"github.com/Snipa22/go-crypto-pool/internal/backend/retention"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/db"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/retention"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/prometheus/client_golang/prometheus/testutil"
 )

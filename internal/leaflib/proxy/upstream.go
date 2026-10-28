@@ -16,8 +16,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/moneroblob"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/moneroblob"
 )
 
 // UpstreamClient is leaf-proxy's real STRATUM CLIENT to an upstream
@@ -888,7 +888,7 @@ func convertTemplateBlobToHashingBlob(blobHex string) ([]byte, error) {
 // raw blob needs to be passed through the encoder to convert it to a
 // minable blob... There's a helper for that in the library."), a raw
 // blocktemplate_blob is no longer refused: it is run through
-// github.com/Snipa22/go-xmr-lib/support's
+// github.com/Jagtech-Services/go-xmr-lib/support's
 // ParseBlockFromTemplateBlob (parses the raw hex blob into a
 // serialization.Block) followed by GetBlockHashingBlob (serializes
 // just BlockHeader + merkle-root-of-tx-hashes + tx-count-varint --

@@ -8,50 +8,75 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Snipa22/go-tari-grpc-lib/v3/tari_generated"
-	"github.com/Snipa22/go-tari-grpc-lib/v3/walletGRPC"
+	"github.com/Jagtech-Services/go-tari-grpc-lib/v3/tari_generated"
+	"github.com/Jagtech-Services/go-tari-lib/v3/walletGRPC"
 )
 
 // defaultFeePerGram is the fee-per-gram used when neither
 // WithFeePerGram nor a positive TransferRequest.Priority supplies one
 // (see Transfer's doc comment on how Priority is reinterpreted for
 // Tari). 5 is not invented for this package — it is the exact value
-// go-tari-grpc-lib/v3/walletGRPC's own legacy SubmitCoinSplitRequest
+// go-tari-lib/v3/walletGRPC's own legacy SubmitCoinSplitRequest
 // helper hardcodes for its FeePerGram param (wallet.go in that
 // package), i.e. the one real fee-per-gram constant already blessed
 // elsewhere in this dependency for a real wallet-GRPC call.
 const defaultFeePerGram = 5
 
-// tariWalletRPC is the narrow slice of go-tari-grpc-lib/v3's
-// walletGRPC package-level API TariWalletGRPC actually needs. This
-// mirrors internal/backend/chain/tari.go's tariNodeRPC exactly: it
-// exists purely so tests can inject a fake without a real Tari
-// console/base wallet, because walletGRPC (like nodeGRPC) exposes a
-// package-level singleton connection with no injectable client type.
+// tariTransferSingleTx is the singleTx argument this package's
+// tariWalletRPCAdapter always passes to (*walletGRPC.Client).
+// SendTransactions: false, meaning every recipient this package ever
+// sends is broadcast as its OWN independent on-chain
+// transaction/kernel, never batched into one single
+// transaction/kernel with multiple outputs.
+//
+// This is NOT a new behavior decision made during this migration — it
+// is the exact behavior this package already had before
+// go-tari-lib/v3's (*Client).SendTransactions existed: the
+// go-tari-grpc-lib/v3 v3-maintenance walletGRPC.SendTransactions(ctx,
+// recipients) this package used to call took no singleTx param at
+// all, because that param did not exist yet at the grpc-lib version
+// this package was pinned to — meaning that RPC was called with
+// SingleTx always unset (its proto zero value, false) on the wire.
+// false is therefore the ONLY value that preserves this package's
+// existing real money-moving behavior unchanged; it is independently
+// reinforced by Transfer's own existing MaxDestinationsPerBatch-must-
+// be-1 constraint above (this package already refuses to send more
+// than one recipient per call, so every call was already, in
+// practice, "N=1 independent transaction" regardless of this flag —
+// but the flag must still be set correctly for if/when that
+// constraint is ever relaxed).
+const tariTransferSingleTx = false
+
+// tariWalletRPC is the narrow slice of go-tari-lib/v3's walletGRPC
+// Client API TariWalletGRPC actually needs. This mirrors
+// internal/backend/chain/tari.go's tariNodeRPC exactly: it exists
+// purely so tests can inject a fake without a real Tari console/base
+// wallet.
 type tariWalletRPC interface {
 	Transfer(ctx context.Context, recipients []*tari_generated.PaymentRecipient) (*tari_generated.TransferResponse, error)
 	GetBalance(ctx context.Context) (*tari_generated.GetBalanceResponse, error)
 	GetTransactionInfo(ctx context.Context, transactionID uint64) (*tari_generated.TransactionInfo, error)
 }
 
-// tariWalletRPCAdapter adapts walletGRPC's package-level functions to
-// tariWalletRPC. As of go-tari-grpc-lib/v3 v3.3.0, every one of these
-// package-level functions takes a leading context.Context (see
-// NewTariWalletGRPC's doc comment) — this adapter passes straight
-// through whatever ctx its caller (TariWalletGRPC's own methods)
-// supplies, rather than manufacturing a context.Background() here.
-type tariWalletRPCAdapter struct{}
-
-func (tariWalletRPCAdapter) Transfer(ctx context.Context, recipients []*tari_generated.PaymentRecipient) (*tari_generated.TransferResponse, error) {
-	return walletGRPC.SendTransactions(ctx, recipients)
+// tariWalletRPCAdapter adapts a real *walletGRPC.Client (go-tari-lib/
+// v3's injectable, non-singleton wallet GRPC client — see
+// NewTariWalletGRPC's doc comment for why this package uses it rather
+// than walletGRPC's deprecated package-level singleton functions) to
+// tariWalletRPC.
+type tariWalletRPCAdapter struct {
+	client *walletGRPC.Client
 }
 
-func (tariWalletRPCAdapter) GetBalance(ctx context.Context) (*tari_generated.GetBalanceResponse, error) {
-	return walletGRPC.GetBalances(ctx)
+func (a tariWalletRPCAdapter) Transfer(ctx context.Context, recipients []*tari_generated.PaymentRecipient) (*tari_generated.TransferResponse, error) {
+	return a.client.SendTransactions(ctx, recipients, tariTransferSingleTx)
 }
 
-func (tariWalletRPCAdapter) GetTransactionInfo(ctx context.Context, transactionID uint64) (*tari_generated.TransactionInfo, error) {
-	return walletGRPC.GetTransactionInfoByID(ctx, transactionID)
+func (a tariWalletRPCAdapter) GetBalance(ctx context.Context) (*tari_generated.GetBalanceResponse, error) {
+	return a.client.GetBalances(ctx)
+}
+
+func (a tariWalletRPCAdapter) GetTransactionInfo(ctx context.Context, transactionID uint64) (*tari_generated.TransactionInfo, error) {
+	return a.client.GetTransactionInfoByID(ctx, transactionID)
 }
 
 // TariWalletGRPC is the production WalletClient for Tari (ALGO_RXT/
@@ -102,19 +127,19 @@ func WithFeePerGram(feePerGram uint64) TariOption {
 // pre-existing behavior).
 //
 // WHY THIS DOES NOT BOUND Transfer — deliberate, not an oversight:
-// as of go-tari-grpc-lib/v3 v3.3.0, walletGRPC.SendTransactions DOES
-// accept a caller-supplied context.Context (it no longer builds its
-// own context.Background() internally), and Transfer (below) passes
-// its own ctx parameter straight through to it — so a caller's ctx
-// (e.g. process shutdown) can genuinely cancel the in-flight RPC at
-// the transport level. What this package still deliberately does NOT
-// do is layer readTimeout (this artificial, package-local deadline)
-// on top of that real ctx for Transfer specifically: readTimeout's
-// only enforcement mechanism (see callWithReadTimeout) is running the
-// call in a goroutine and giving up on READING its result after a
-// timer — it does not itself cancel anything, it just stops waiting.
-// For a read-only lookup that costs nothing (abandoning a GetBalance
-// read has no side effect). For Transfer, the SAME abandon-after-timer
+// go-tari-lib/v3/walletGRPC's (*Client).SendTransactions DOES accept
+// a caller-supplied context.Context and threads it straight through
+// to the underlying Transfer RPC (it does not build its own
+// context.Background() internally) — so a caller's ctx (e.g. process
+// shutdown) can genuinely cancel the in-flight RPC at the transport
+// level. What this package still deliberately does NOT do is layer
+// readTimeout (this artificial, package-local deadline) on top of
+// that real ctx for Transfer specifically: readTimeout's only
+// enforcement mechanism (see callWithReadTimeout) is running the call
+// in a goroutine and giving up on READING its result after a timer —
+// it does not itself cancel anything, it just stops waiting. For a
+// read-only lookup that costs nothing (abandoning a GetBalance read
+// has no side effect). For Transfer, the SAME abandon-after-timer
 // behavior would still let the wallet's transaction service go on to
 // broadcast the transaction for real, in the background, after this
 // package has already told its caller "timed out" — manufacturing the
@@ -137,29 +162,35 @@ func WithTariReadTimeout(d time.Duration) TariOption {
 	}
 }
 
-// NewTariWalletGRPC dials address (host:port) via
-// walletGRPC.InitWalletGRPC (a process-wide singleton connection —
-// see this file's tariWalletRPC doc comment, and
-// internal/backend/chain.NewTariVerifier's identical constraint for
-// nodeGRPC) and returns a ready-to-use TariWalletGRPC. Only one
-// TariWalletGRPC's worth of walletGRPC usage should exist per
-// process.
+// NewTariWalletGRPC dials address (host:port) via walletGRPC.New,
+// returning an independent *walletGRPC.Client wrapped in this file's
+// own tariWalletRPCAdapter, and a ready-to-use TariWalletGRPC.
+// go-tari-lib/v3/walletGRPC's own doc comments explicitly recommend
+// against its deprecated package-level singleton functions
+// (InitWalletGRPC/SendTransactions/etc — they take no ctx and share
+// one unsynchronized connection for the whole process) in favor of
+// New(walletAddress), which returns an independent, concurrency-safe
+// *Client whose methods take a caller-supplied context.Context — this
+// is exactly the injectable-client seam this file's own tariWalletRPC
+// interface/tariWalletRPCAdapter already existed to provide (see
+// tariWalletRPC's doc comment), so this package now gets that for
+// free from the dependency itself instead of wrapping a singleton.
 //
-// As of go-tari-grpc-lib/v3 v3.3.0, InitWalletGRPC itself returns an
-// error (previously void) — a real dial-time failure (e.g. malformed
-// address) is now reported here instead of surfacing later as a
-// confusing failure from the first real RPC call made against an
-// unusable connection. Callers must check err and fail fast rather
-// than proceeding with a half-constructed TariWalletGRPC.
+// walletGRPC.New returns a real dial-time error (e.g. malformed
+// address) — reported here instead of surfacing later as a confusing
+// failure from the first real RPC call made against an unusable
+// connection. Callers must check err and fail fast rather than
+// proceeding with a half-constructed TariWalletGRPC.
 func NewTariWalletGRPC(address string, opts ...TariOption) (*TariWalletGRPC, error) {
 	o := tariWalletGRPCOptions{feePerGram: defaultFeePerGram}
 	for _, opt := range opts {
 		opt(&o)
 	}
-	if err := walletGRPC.InitWalletGRPC(address); err != nil {
+	client, err := walletGRPC.New(address)
+	if err != nil {
 		return nil, fmt.Errorf("wallet: tari: NewTariWalletGRPC: dialing %s: %w", address, err)
 	}
-	return &TariWalletGRPC{rpc: tariWalletRPCAdapter{}, feePerGram: o.feePerGram, readTimeout: o.readTimeout}, nil
+	return &TariWalletGRPC{rpc: tariWalletRPCAdapter{client: client}, feePerGram: o.feePerGram, readTimeout: o.readTimeout}, nil
 }
 
 // newTariWalletGRPCWithRPC is the test seam: constructs a

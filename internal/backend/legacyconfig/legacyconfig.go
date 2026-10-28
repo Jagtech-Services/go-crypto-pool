@@ -22,10 +22,10 @@ import (
 	"net/http"
 	"time"
 
-	tariaddress "github.com/Snipa22/go-tari-lib/address"
-	xmraddress "github.com/Snipa22/go-xmr-lib/support"
+	tariaddress "github.com/Jagtech-Services/go-tari-lib/v3/address"
+	xmraddress "github.com/Jagtech-Services/go-xmr-lib/support"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/networkapi"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/networkapi"
 )
 
 // MotdRecord mirrors db.Motd field-for-field (see that package's doc
@@ -292,7 +292,7 @@ func (h *Handler) handlePorts(w http.ResponseWriter, r *http.Request) {
 
 // isValidXMRAddress performs the same real, checksum-verified Monero
 // address validation internal/backend/addressmap.validateXMRAddress
-// uses (github.com/Snipa22/go-xmr-lib/support.IsValidMainnet/
+// uses (github.com/Jagtech-Services/go-xmr-lib/support.IsValidMainnet/
 // IsValidTestnet) -- reused here rather than duplicated/reinvented,
 // per brief-auth.md's explicit instruction to reuse this repo's
 // existing address decoders.
@@ -317,8 +317,8 @@ type addressTypeResponse struct {
 // legacy's genuinely new Tari-native address-type sniff (see
 // brief-auth.md). Reuses the exact same real, byte-exact decoders
 // internal/backend/addressmap already imports
-// (github.com/Snipa22/go-xmr-lib/support,
-// github.com/Snipa22/go-tari-lib/address) rather than writing new
+// (github.com/Jagtech-Services/go-xmr-lib/support,
+// github.com/Jagtech-Services/go-tari-lib/v3/address) rather than writing new
 // base58/decode logic. Legacy's second case was "BTC"; this stack
 // validates neither Bitcoin addresses nor any BTC-specific decoder
 // exists anywhere in this repo, so "TARI" is used instead per

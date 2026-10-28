@@ -13,8 +13,8 @@ import (
 
 	dto "github.com/prometheus/client_model/go"
 
-	shared "github.com/Snipa22/go-crypto-pool/internal/leaflib/metrics"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/relay"
+	shared "github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/relay"
 )
 
 func scrape(t *testing.T, m *Metrics) string {

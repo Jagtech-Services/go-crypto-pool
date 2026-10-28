@@ -6,7 +6,7 @@ import (
 	"context"
 	"testing"
 
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // TestMoneroNodeClient_RelayTemplateRoundTrip is the primary

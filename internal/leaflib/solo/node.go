@@ -24,12 +24,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Snipa22/go-tari-grpc-lib/v3/nodeGRPC"
-	"github.com/Snipa22/go-tari-grpc-lib/v3/tari_generated"
+	"github.com/Jagtech-Services/go-tari-grpc-lib/v3/tari_generated"
+	"github.com/Jagtech-Services/go-tari-lib/v3/nodeGRPC"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/moneroblob"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/validator"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/moneroblob"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/validator"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // SubmitProof carries whatever a submitted share's proof genuinely
@@ -71,8 +71,8 @@ type SubmitProof struct {
 //   - its own real block-submission RPC (SubmitBlock).
 //
 // GRPCNodeClient (below) is the production Tari implementation, backed
-// by go-tari-grpc-lib/v3's nodeGRPC package (the real, current API
-// surface for this library as of v3.4.0: a package-level
+// by go-tari-lib/v3's nodeGRPC package (the real, current API
+// surface for this library as of v3.2.0: a package-level
 // InitNodeGRPC(address) call followed by package-level RPC wrapper
 // functions operating on that connection — there is no per-call
 // injectable *Client type in this version, so GRPCNodeClient wraps the
@@ -379,7 +379,7 @@ func MoneroHashingBlobForXNPSubmit(job *Job, nonce uint64, workerNonce, poolNonc
 }
 
 // GRPCNodeClient is the production NodeClient, backed by
-// go-tari-grpc-lib/v3's nodeGRPC package against a real Tari base node.
+// go-tari-lib/v3's nodeGRPC package against a real Tari base node.
 type GRPCNodeClient struct {
 	// coinbaseExtraTag is this instance's configured coinbase-extra
 	// ownership tag (see NewGRPCNodeClient's doc comment and
@@ -400,7 +400,7 @@ type GRPCNodeClient struct {
 // every fetched block template's coinbase-extra field ahead of the
 // per-xn random nonce (see GetBlockTemplate).
 //
-// As of go-tari-grpc-lib/v3 v3.3.0, InitNodeGRPC itself returns an
+// As of go-tari-lib/v3 v3.2.0, InitNodeGRPC itself returns an
 // error (previously void) — a real dial-time failure (e.g. malformed
 // address) is now reported here instead of surfacing later as a
 // confusing failure from the first real RPC call made against an
@@ -595,7 +595,7 @@ func (c *GRPCNodeClient) GetBlockTemplate(ctx context.Context, payoutAddress str
 		},
 	}
 
-	result, err := nodeGRPC.GetNewBlockTemplateWithCoinbases(ctx, &tari_generated.GetNewBlockTemplateWithCoinbasesRequest{
+	result, err := nodeGRPC.GetNewBlockTemplateWithCoinbasesCtx(ctx, &tari_generated.GetNewBlockTemplateWithCoinbasesRequest{
 		Algo:      &tari_generated.PowAlgo{PowAlgo: powAlgo},
 		Coinbases: coinbases,
 	})
@@ -666,9 +666,9 @@ func tariJobFromResult(result *tari_generated.GetNewBlockResult, algo poolpb.Alg
 	}, nil
 }
 
-// GetTipInfo implements NodeClient, wrapping nodeGRPC.GetTipInfo.
+// GetTipInfo implements NodeClient, wrapping nodeGRPC.GetTipInfoCtx.
 func (c *GRPCNodeClient) GetTipInfo(ctx context.Context) (uint64, error) {
-	tip, err := nodeGRPC.GetTipInfo(ctx)
+	tip, err := nodeGRPC.GetTipInfoCtx(ctx)
 	if err != nil {
 		return 0, err
 	}
@@ -725,7 +725,7 @@ func tariBuildCandidateBlock(job *Job, nonce uint64, proof SubmitProof) (diff ui
 	}
 }
 
-// SubmitBlock implements NodeClient, wrapping nodeGRPC.SubmitBlock.
+// SubmitBlock implements NodeClient, wrapping nodeGRPC.SubmitBlockCtx.
 // candidate must be a *tari_generated.Block produced by this SAME
 // implementation's own BuildCandidateBlock.
 func (c *GRPCNodeClient) SubmitBlock(ctx context.Context, candidate any) error {
@@ -733,7 +733,7 @@ func (c *GRPCNodeClient) SubmitBlock(ctx context.Context, candidate any) error {
 	if !ok {
 		return fmt.Errorf("solo: SubmitBlock: candidate is not a *tari_generated.Block (got %T)", candidate)
 	}
-	_, err := nodeGRPC.SubmitBlock(ctx, block)
+	_, err := nodeGRPC.SubmitBlockCtx(ctx, block)
 	return err
 }
 

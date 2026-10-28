@@ -81,11 +81,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/cfgfile"
-	monerozmq "github.com/Snipa22/go-crypto-pool/internal/leaflib/monero/zmq"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/relay"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/solo"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/cfgfile"
+	monerozmq "github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/monero/zmq"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/relay"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/solo"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // version is a build-time-overridable identifier -- override via

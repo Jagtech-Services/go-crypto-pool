@@ -7,11 +7,11 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/Jagtech-Services/powkit/cuckoo"
 	"github.com/holiman/uint256"
-	"github.com/snipa22/powkit/cuckoo"
 	"golang.org/x/crypto/blake2b"
 
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // blake2b256 hashes data with blake2b-256, matching go-tari-c29-solo-stratum
@@ -42,9 +42,9 @@ func blake2b256(data []byte) []byte {
 //   - The actual cycle-verification primitive: `cuckoo.NewCuckarooWithSipBlock24(29, 42).Verify(nonceBytes, pow)`,
 //     where nonceBytes is the submitted nonce concatenated with the block's
 //     merge-mining hash. That call chain bottoms out in
-//     github.com/snipa22/powkit/cuckoo (Client.Verify -> Client.cuckaroo),
+//     github.com/Jagtech-Services/powkit/cuckoo (Client.Verify -> Client.cuckaroo),
 //     which is MIT-licensed (© 2013-2020 John Tromp for the underlying
-//     cuckoo-cycle algorithm, packaged by snipa22/powkit) — this is a
+//     cuckoo-cycle algorithm, packaged by Jagtech-Services/powkit) — this is a
 //     real dependency pulled directly into go-crypto-pool (see go.mod),
 //     not a reimplementation of siphash/cycle-detection from a written
 //     description.

@@ -607,7 +607,7 @@ const file_internal_legacyproto_legacy_proto_rawDesc = "" +
 	"\vMESSAGETYPE\x12\t\n" +
 	"\x05SHARE\x10\x00\x12\t\n" +
 	"\x05BLOCK\x10\x01\x12\x10\n" +
-	"\fINVALIDSHARE\x10\x02BAZ?github.com/Snipa22/go-crypto-pool/internal/legacyproto;legacypb"
+	"\fINVALIDSHARE\x10\x02BJZHgithub.com/Jagtech-Services/go-crypto-pool/internal/legacyproto;legacypb"
 
 var (
 	file_internal_legacyproto_legacy_proto_rawDescOnce sync.Once

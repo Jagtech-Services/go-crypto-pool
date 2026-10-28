@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
-	directmetrics "github.com/Snipa22/go-crypto-pool/internal/leaflib/direct/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
+	directmetrics "github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/direct/metrics"
 )
 
 // SessionStat is one connected session's real, point-in-time

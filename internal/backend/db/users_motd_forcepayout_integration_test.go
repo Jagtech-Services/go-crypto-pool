@@ -13,7 +13,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/db"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/db"
 )
 
 func TestIntegrationUsersCRUD(t *testing.T) {
