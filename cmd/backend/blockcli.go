@@ -93,7 +93,7 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/db"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/db"
 )
 
 // blockCLITimeout bounds every DB call the block subcommands make

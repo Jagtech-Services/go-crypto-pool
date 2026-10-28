@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
-	legacypb "github.com/Snipa22/go-crypto-pool/internal/legacyproto"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
+	legacypb "github.com/Jagtech-Services/go-crypto-pool/internal/legacyproto"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // TestPoolTypeFromString confirms the real LEAF_DIRECT_POOL_TYPE parse

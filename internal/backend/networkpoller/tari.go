@@ -6,13 +6,13 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	"github.com/Snipa22/go-tari-grpc-lib/v3/nodeGRPC"
-	"github.com/Snipa22/go-tari-grpc-lib/v3/tari_generated"
+	"github.com/Jagtech-Services/go-tari-grpc-lib/v3/tari_generated"
+	"github.com/Jagtech-Services/go-tari-lib/v3/nodeGRPC"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
 
-// tariNodeRPC is the narrow slice of go-tari-grpc-lib/v3's nodeGRPC
+// tariNodeRPC is the narrow slice of go-tari-lib/v3's nodeGRPC
 // package-level API TariNetworkSource actually needs -- GetTipInfo
 // (real chain tip height/hash) and GetNetworkState (real per-algo
 // estimated hashrate). Exists purely so tests can inject a fake
@@ -26,12 +26,19 @@ type tariNodeRPC interface {
 
 type tariNodeRPCAdapter struct{}
 
+// GetTipInfo calls nodeGRPC's context-cancellable GetTipInfoCtx (see
+// internal/leaflib/solo/node.go for the same go-tari-lib/v3 v3.2.0
+// function).
 func (tariNodeRPCAdapter) GetTipInfo(ctx context.Context) (*tari_generated.TipInfoResponse, error) {
-	return nodeGRPC.GetTipInfo(ctx)
+	return nodeGRPC.GetTipInfoCtx(ctx)
 }
 
+// GetNetworkState has no ctx-cancellable variant in go-tari-lib/v3
+// v3.2.0's nodeGRPC package (unlike GetTipInfo) -- ctx is accepted
+// here to satisfy tariNodeRPC but is not passed through, since there
+// is nothing to pass it to.
 func (tariNodeRPCAdapter) GetNetworkState(ctx context.Context) (*tari_generated.GetNetworkStateResponse, error) {
-	return nodeGRPC.GetNetworkState(ctx)
+	return nodeGRPC.GetNetworkState()
 }
 
 // TariAlgo identifies which of the three real Tari-merge-mined PoW
@@ -122,11 +129,14 @@ func newTariNetworkSourceWithRPC(rpc tariNodeRPC, algo TariAlgo) *TariNetworkSou
 
 // FetchNetworkState implements Source for Tari. ctx is a real,
 // already-in-scope context (the poll loop's own per-cycle ctx) and is
-// threaded straight through to both real GRPC calls below — as of
-// go-tari-grpc-lib/v3 v3.3.0, nodeGRPC.GetTipInfo/GetNetworkState both
-// accept a leading context.Context (see tariNodeRPCAdapter), so a
-// canceled/timed-out ctx now genuinely cancels an in-flight call
-// rather than this method waiting on it unbounded.
+// threaded through to s.rpc.GetTipInfo, which (via
+// tariNodeRPCAdapter) calls go-tari-lib/v3 v3.2.0's context-
+// cancellable nodeGRPC.GetTipInfoCtx, so a canceled/timed-out ctx
+// genuinely cancels that in-flight call rather than this method
+// waiting on it unbounded. GetNetworkState has no such ctx-
+// cancellable variant in this version (see tariNodeRPCAdapter) —
+// ctx is still threaded to s.rpc.GetNetworkState for interface
+// consistency, but that call cannot itself be canceled early.
 func (s *TariNetworkSource) FetchNetworkState(ctx context.Context) (State, error) {
 	tip, err := s.rpc.GetTipInfo(ctx)
 	if err != nil {

@@ -20,9 +20,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/chain"
-	"github.com/Snipa22/go-crypto-pool/internal/backend/metrics"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/chain"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
 )
 
 // Block is the minimal shape the Unlocker needs for one pending block

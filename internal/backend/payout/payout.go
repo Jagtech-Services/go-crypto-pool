@@ -72,7 +72,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/metrics"
 )
 
 // ShareRow is one row from the `shares` table, as needed for payout

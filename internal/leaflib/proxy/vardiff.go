@@ -6,7 +6,7 @@ import (
 	mathrand "math/rand"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
 )
 
 // proxyForcedTargetTimeSeconds mirrors solo.proxyForcedTargetTimeSeconds

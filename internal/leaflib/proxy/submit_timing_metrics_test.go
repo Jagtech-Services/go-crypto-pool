@@ -9,8 +9,8 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	dto "github.com/prometheus/client_model/go"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/proxy/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/proxy/metrics"
 )
 
 // histogramSampleCount reads the real Prometheus _count of a single

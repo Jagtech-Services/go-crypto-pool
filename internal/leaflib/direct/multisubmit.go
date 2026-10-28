@@ -8,13 +8,13 @@ import (
 	"log"
 	"sync"
 
-	"github.com/Snipa22/go-tari-grpc-lib/v3/tari_generated"
-	"github.com/Snipa22/go-tari-lib/nodeGRPC"
+	"github.com/Jagtech-Services/go-tari-grpc-lib/v3/tari_generated"
+	"github.com/Jagtech-Services/go-tari-lib/v3/nodeGRPC"
 )
 
 // blockSubmitClient is the minimal set of operations
 // MultiNodeSubmitter needs from one node's own independent GRPC
-// connection. *nodeGRPC.Client (github.com/Snipa22/go-tari-lib, the
+// connection. *nodeGRPC.Client (github.com/Jagtech-Services/go-tari-lib/v3, the
 // real per-call-injectable client type — NOT the older
 // package-level-singleton-only nodeGRPC.InitNodeGRPC API that
 // go-tari-grpc-lib/v3 alone exposes, which cannot support N distinct
@@ -86,7 +86,7 @@ func realBlockHashHex(results []NodeSubmitResult, logger *log.Logger) string {
 // best-effort relay-broadcast half).
 //
 // Each configured address gets its own independent *nodeGRPC.Client
-// connection (github.com/Snipa22/go-tari-lib's real injectable Client
+// connection (github.com/Jagtech-Services/go-tari-lib/v3's real injectable Client
 // type) — this is structurally required: N distinct node addresses
 // submitted to concurrently cannot share go-tari-grpc-lib/v3's
 // package-level singleton connection (there is exactly one shared

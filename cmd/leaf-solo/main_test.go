@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
 )
 
 // precedenceCase drives one subtest of TestLoadConfigPrecedence. toml, if

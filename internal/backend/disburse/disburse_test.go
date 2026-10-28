@@ -6,7 +6,7 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/wallet"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/wallet"
 )
 
 // fakeRepo is an in-memory Repository test double, mirroring

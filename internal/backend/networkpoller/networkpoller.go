@@ -25,7 +25,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
 )
 
 // State is one real, live chain-state snapshot a Source has fetched

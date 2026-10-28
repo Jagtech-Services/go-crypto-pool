@@ -47,19 +47,19 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/Snipa22/go-tari-grpc-lib/v3/tari_generated"
+	"github.com/Jagtech-Services/go-tari-grpc-lib/v3/tari_generated"
 	"github.com/prometheus/client_golang/prometheus"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/addressflags"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/chainheight"
-	directmetrics "github.com/Snipa22/go-crypto-pool/internal/leaflib/direct/metrics"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/relay"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/solo"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/transport"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/validator"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/addressflags"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/chainheight"
+	directmetrics "github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/direct/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/relay"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/solo"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/transport"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/validator"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // Server ties together internal/leaflib.ConnectionManager (miner

@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/validator"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/validator"
 )
 
 // TestSession_RealPureGoRandomXValidator_BlockLevelFind_ForwardedUpstream

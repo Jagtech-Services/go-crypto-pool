@@ -4,7 +4,7 @@ package proxy
 import (
 	"encoding/json"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/solo"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/solo"
 )
 
 // Downstream (miner-facing) wire dialect: leaf-proxy's downstream

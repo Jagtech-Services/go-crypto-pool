@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/networkapi"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/networkapi"
 )
 
 // Real, checksum/byte-verified fixture addresses -- mirrors

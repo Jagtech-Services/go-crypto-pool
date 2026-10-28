@@ -4,7 +4,7 @@ package solo
 import (
 	"crypto/sha512"
 
-	"github.com/Snipa22/go-tari-lib/address"
+	"github.com/Jagtech-Services/go-tari-lib/v3/address"
 	"github.com/gtank/ristretto255"
 )
 

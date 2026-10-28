@@ -36,7 +36,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/metrics"
 )
 
 // Target names one (algo, pool_type) combination this job should

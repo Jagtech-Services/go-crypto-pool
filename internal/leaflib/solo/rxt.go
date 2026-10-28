@@ -1,7 +1,7 @@
 // Copyright and license: see repository LICENSE (MIT).
 package solo
 
-import "github.com/Snipa22/go-crypto-pool/internal/leaflib"
+import "github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
 
 // rxtPowAlgoByte, tariMiningBlobSize, rxtXmrigNonceOffset/Size,
 // createTariMiningBlob, errRXTHashIsZero, and rxtLittleEndianDifficulty

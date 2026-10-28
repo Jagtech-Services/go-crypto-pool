@@ -6,7 +6,7 @@ import (
 	"log"
 	"sync"
 
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // This file is the EXTRACTION target for the exact bug class that

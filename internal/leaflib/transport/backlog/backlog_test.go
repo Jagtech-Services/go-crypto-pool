@@ -15,7 +15,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/testutil"
 	"google.golang.org/protobuf/proto"
 
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // testutilCounterVecTotal reads the current value of a labeled

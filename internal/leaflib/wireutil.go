@@ -13,10 +13,10 @@ import (
 	"github.com/holiman/uint256"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/Snipa22/go-tari-grpc-lib/v3/tari_generated"
+	"github.com/Jagtech-Services/go-tari-grpc-lib/v3/tari_generated"
 
-	"github.com/Snipa22/go-crypto-pool/internal/coinprofile"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/coinprofile"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // This file is the EXTRACTION target for a real, confirmed

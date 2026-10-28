@@ -12,7 +12,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/testutil"
 	"go.uber.org/goleak"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
 )
 
 // newNoShareTimeoutTestServer builds a minimal, real Server (no

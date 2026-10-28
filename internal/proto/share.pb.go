@@ -34,7 +34,7 @@
 //
 // NOTE on C29Proof: field shapes were checked against the real Tari C29
 // miner implementation (go-tari-c29-solo-stratum's SubmitJob, via
-// snipa22/powkit's cuckoo.Client.Verify) as part of building the
+// Jagtech-Services/powkit's cuckoo.Client.Verify) as part of building the
 // internal/leaflib/validator package. `edge_bits` + repeated `cycle` (the
 // 42-edge Cuckaroo29 cycle, u64 edge nonces) matches the real proof shape.
 // `header` was ADDED here (it did not exist in the original placeholder)
@@ -969,7 +969,7 @@ const file_internal_proto_share_proto_rawDesc = "" +
 	"\x0fPOOL_TYPE_PPLNS\x10\x01\x12\x11\n" +
 	"\rPOOL_TYPE_PPS\x10\x02\x12\x12\n" +
 	"\x0ePOOL_TYPE_PROP\x10\x03\x12\x12\n" +
-	"\x0ePOOL_TYPE_SOLO\x10\x04B9Z7github.com/Snipa22/go-crypto-pool/internal/proto;poolpbb\x06proto3"
+	"\x0ePOOL_TYPE_SOLO\x10\x04BBZ@github.com/Jagtech-Services/go-crypto-pool/internal/proto;poolpbb\x06proto3"
 
 var (
 	file_internal_proto_share_proto_rawDescOnce sync.Once

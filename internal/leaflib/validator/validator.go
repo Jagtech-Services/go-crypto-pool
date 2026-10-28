@@ -13,7 +13,7 @@
 // provenance / line references). RandomXValidator (used for both RXT and
 // RXM, per the architecture decision that RXM behaves like a Monero
 // daemon protocol-wise and can reuse RXT's validation approach) is a
-// real, service-backed implementation using snipa22/go-xmr-lib's
+// real, service-backed implementation using Jagtech-Services/go-xmr-lib's
 // hashValidation.RXVerifier — see randomx.go's doc comment for the full,
 // honest status of that implementation; it is NOT a native Go RandomX
 // implementation (none exists) and it is NOT a fake/placeholder pass.
@@ -23,8 +23,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Snipa22/go-crypto-pool/internal/coinprofile"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/coinprofile"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // AlgoValidator validates a single Share's proof-of-work against its

@@ -1,12 +1,13 @@
-module github.com/Snipa22/go-crypto-pool
+module github.com/Jagtech-Services/go-crypto-pool
 
 go 1.25.0
 
 require (
 	git.gammaspectra.live/P2Pool/go-randomx v1.0.0
-	github.com/Snipa22/go-tari-grpc-lib/v3 v3.4.0
-	github.com/Snipa22/go-tari-lib v1.3.0
-	github.com/Snipa22/go-xmr-lib v1.0.0
+	github.com/Jagtech-Services/go-tari-grpc-lib/v3 v3.5.0
+	github.com/Jagtech-Services/go-tari-lib/v3 v3.2.0
+	github.com/Jagtech-Services/go-xmr-lib v1.1.0
+	github.com/Jagtech-Services/powkit v0.1.0
 	github.com/go-zeromq/zmq4 v0.17.0
 	github.com/golang-jwt/jwt/v5 v5.3.1
 	github.com/gtank/ristretto255 v0.2.0
@@ -19,7 +20,6 @@ require (
 	github.com/pelletier/go-toml/v2 v2.2.4
 	github.com/prometheus/client_golang v1.24.1
 	github.com/prometheus/client_model v0.6.2
-	github.com/snipa22/powkit v0.0.4
 	go.uber.org/goleak v1.3.0
 	golang.org/x/crypto v0.55.0
 	golang.org/x/net v0.57.0

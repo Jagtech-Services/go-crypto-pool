@@ -3,7 +3,7 @@ package legacyapi
 import (
 	"net/http"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/networkapi"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/networkapi"
 )
 
 // poolStatistics mirrors legacy's exact bare pool_statistics numeric

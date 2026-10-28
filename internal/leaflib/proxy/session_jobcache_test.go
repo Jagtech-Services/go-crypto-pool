@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
 )
 
 // This file covers the THIRD report of leaf-proxy's job-staleness bug

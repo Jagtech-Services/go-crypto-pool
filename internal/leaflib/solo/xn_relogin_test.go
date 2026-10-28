@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/moneroblob"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/validator"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/moneroblob"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/validator"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // --- BRIEF_xn_relogin_fix.md required test coverage: a re-login must

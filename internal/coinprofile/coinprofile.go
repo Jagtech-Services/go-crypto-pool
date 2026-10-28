@@ -45,7 +45,7 @@ import (
 	"fmt"
 	"strings"
 
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // CoinProfile describes one standalone (non-merge-mined) monerod-family

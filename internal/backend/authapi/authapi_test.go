@@ -12,7 +12,7 @@ import (
 
 	"github.com/golang-jwt/jwt/v5"
 
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 const testSecret = "test-secret-key-do-not-use-in-prod"

@@ -19,7 +19,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/wallet"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/wallet"
 )
 
 // TestRunOnce_AmbiguousTransferErrorFreezesBalanceAndHalts is the

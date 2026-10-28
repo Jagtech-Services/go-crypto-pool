@@ -17,8 +17,8 @@ import (
 
 	"github.com/holiman/uint256"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/addressflags"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/addressflags"
 )
 
 // --- test fixtures -----------------------------------------------------

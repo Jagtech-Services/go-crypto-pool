@@ -15,13 +15,13 @@ import (
 
 	natsserver "github.com/nats-io/nats-server/v2/server"
 
-	"github.com/Snipa22/go-tari-grpc-lib/v3/tari_generated"
+	"github.com/Jagtech-Services/go-tari-grpc-lib/v3/tari_generated"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/relay"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/solo"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/relay"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/solo"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // startEmbeddedNATSServer starts a real, in-process, embedded NATS

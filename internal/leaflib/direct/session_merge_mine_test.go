@@ -17,10 +17,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/solo"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/validator"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/solo"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/validator"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // mergeMineMockDaemon is moneroDirectMockDaemon's sibling, extended

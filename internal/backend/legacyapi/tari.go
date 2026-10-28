@@ -13,7 +13,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/addressmap"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/addressmap"
 )
 
 // maxTariBodyBytes bounds how much of a POST body handleUpdateTariAddress

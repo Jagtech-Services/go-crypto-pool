@@ -31,7 +31,7 @@ syntax = "proto2";
 
 package legacy;
 
-option go_package = "github.com/Snipa22/go-crypto-pool/internal/legacyproto;legacypb";
+option go_package = "github.com/Jagtech-Services/go-crypto-pool/internal/legacyproto;legacypb";
 
 // POOLTYPE mirrors nodejs-pool's real data.proto POOLTYPE enum exactly
 // (field values are part of the real wire contract -- do not renumber).

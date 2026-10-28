@@ -11,8 +11,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/metrics"
-	"github.com/Snipa22/go-crypto-pool/internal/backend/wallet"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/wallet"
 )
 
 // walletStatsFakeMonero is a minimal wallet.WalletClient test double

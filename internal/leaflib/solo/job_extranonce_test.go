@@ -14,10 +14,10 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/Snipa22/go-xmr-lib/support"
+	"github.com/Jagtech-Services/go-xmr-lib/support"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/moneroblob"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/moneroblob"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // --- Per-job Monero extraNonce stamp regression tests ---

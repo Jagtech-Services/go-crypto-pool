@@ -11,7 +11,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/db"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/db"
 )
 
 // expectedMigrationCount counts the real migrations/*.up.sql files on

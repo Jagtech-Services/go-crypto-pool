@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/addressflags"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/solo"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/addressflags"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/solo"
 )
 
 // --- leaf-proxy DOWNSTREAM login-field parsing --------------------

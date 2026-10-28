@@ -102,7 +102,7 @@ import (
 	"strconv"
 	"time"
 
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // DefaultWindowSeconds is the hashrate lookback window used when a

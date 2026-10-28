@@ -30,9 +30,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/db"
-	"github.com/Snipa22/go-crypto-pool/internal/backend/disburse"
-	"github.com/Snipa22/go-crypto-pool/internal/backend/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/db"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/disburse"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/metrics"
 )
 
 // coinDisburseTestServer builds a fake monero-wallet-rpc-compatible

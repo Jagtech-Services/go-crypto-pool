@@ -23,7 +23,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/collectors"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
-	shared "github.com/Snipa22/go-crypto-pool/internal/leaflib/metrics"
+	shared "github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/metrics"
 )
 
 // Result label values for shares_total/blocks_total, mirroring the

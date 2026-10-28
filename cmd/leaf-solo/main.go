@@ -53,14 +53,14 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/coinprofile"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/addressflags"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/cfgfile"
-	monerozmq "github.com/Snipa22/go-crypto-pool/internal/leaflib/monero/zmq"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/solo"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/validator"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/coinprofile"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/addressflags"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/cfgfile"
+	monerozmq "github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/monero/zmq"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/solo"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/validator"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // version is a build-time-overridable identifier surfaced on the
@@ -165,7 +165,7 @@ type config struct {
 	algo string
 
 	// randomXServiceURL is the RandomX-verification HTTP daemon address
-	// (github.com/Snipa22/go-xmr-lib's hashValidation.RXVerifier — see
+	// (github.com/Jagtech-Services/go-xmr-lib's hashValidation.RXVerifier — see
 	// internal/leaflib/validator/randomx.go) this leaf's RandomXValidator
 	// talks to for RXT (and, if ever configured for it, RXM) shares.
 	// Only actually consulted when -algo/LEAF_SOLO_ALGO is "rxt" — for

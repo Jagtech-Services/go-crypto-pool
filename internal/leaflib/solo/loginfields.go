@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // --- REAL BUG FIX: login-field address/+diff/.paymentID/.identifier

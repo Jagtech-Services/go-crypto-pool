@@ -5,7 +5,7 @@ import (
 	"context"
 	"testing"
 
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // NOTE ON TEST COVERAGE HONESTY: unlike SHA3X (which has real legacy test

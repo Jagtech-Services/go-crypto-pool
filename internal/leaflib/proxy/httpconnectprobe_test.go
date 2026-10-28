@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
-	proxymetrics "github.com/Snipa22/go-crypto-pool/internal/leaflib/proxy/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
+	proxymetrics "github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/proxy/metrics"
 )
 
 // TestSession_HTTPRequestProbe_ClosesConnectionAndDropsFromTracking is

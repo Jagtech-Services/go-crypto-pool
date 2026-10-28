@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 func TestParseNetwork(t *testing.T) {

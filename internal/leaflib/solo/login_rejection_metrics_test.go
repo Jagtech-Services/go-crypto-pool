@@ -12,10 +12,10 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus/testutil"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/addressflags"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/solo/metrics"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/validator"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/addressflags"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/solo/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/validator"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // assertOnlyLoginRejectionReason confirms exactly one

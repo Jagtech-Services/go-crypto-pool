@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
 )
 
 // TestHandleLine_UnparseableMessage_SuppressedAtLogLevelZero and

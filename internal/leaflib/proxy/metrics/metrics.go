@@ -42,7 +42,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/collectors"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
-	shared "github.com/Snipa22/go-crypto-pool/internal/leaflib/metrics"
+	shared "github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/metrics"
 )
 
 // Decision label values for ShareDecisionsTotal -- leaf-proxy's own

@@ -7,19 +7,19 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Snipa22/go-tari-grpc-lib/v3/tari_generated"
-	tarilib "github.com/Snipa22/go-tari-lib/nodeGRPC"
+	"github.com/Jagtech-Services/go-tari-grpc-lib/v3/tari_generated"
+	tarilib "github.com/Jagtech-Services/go-tari-lib/v3/nodeGRPC"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/solo"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/validator"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/solo"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/validator"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // NodeClient is leaf-direct's own implementation of solo.NodeClient
 // (the coin-agnostic interface — see internal/leaflib/solo/node.go's
-// own doc comment), backed by github.com/Snipa22/go-tari-lib's real
+// own doc comment), backed by github.com/Jagtech-Services/go-tari-lib/v3's real
 // per-call-injectable *nodeGRPC.Client (v1.2.0), NOT
 // go-tari-grpc-lib/v3's older package-level-singleton-only API that
 // solo.GRPCNodeClient wraps. leaf-direct's primary template-fetch

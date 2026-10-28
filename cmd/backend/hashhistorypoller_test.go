@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/db"
-	"github.com/Snipa22/go-crypto-pool/internal/backend/metrics"
-	"github.com/Snipa22/go-crypto-pool/internal/backend/statsapi"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/db"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/statsapi"
 )
 
 // hashHistoryKey mirrors runHashHistoryPoller's own internal

@@ -7,12 +7,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Snipa22/go-tari-grpc-lib/v3/tari_generated"
+	"github.com/Jagtech-Services/go-tari-grpc-lib/v3/tari_generated"
 	natsserver "github.com/nats-io/nats-server/v2/server"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/relay"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/relay"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // syntheticTariResultForAdoptionTest builds a real, minimal-but-valid

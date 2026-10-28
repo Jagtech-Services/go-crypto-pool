@@ -140,9 +140,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/metrics"
-	"github.com/Snipa22/go-crypto-pool/internal/backend/wallet"
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/metrics"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/wallet"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib"
 )
 
 // ErrHalted is returned by RunOnce when it refuses to run a

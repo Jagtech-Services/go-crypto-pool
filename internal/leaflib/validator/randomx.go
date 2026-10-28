@@ -8,9 +8,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Snipa22/go-xmr-lib/hashValidation"
+	"github.com/Jagtech-Services/go-xmr-lib/hashValidation"
 
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // rxHashMaxAttempts/rxHashRetryDelays bound the retry budget for a single
@@ -36,7 +36,7 @@ var rxHashRetryDelays = []time.Duration{50 * time.Millisecond, 100 * time.Millis
 // internal/processor/processor.go's `Hasher` interface and
 // internal/integration/randomx_integration_test.go, which drives this
 // exact client against a real randomx-service instance in CI). This
-// validator wraps github.com/Snipa22/go-xmr-lib's
+// validator wraps github.com/Jagtech-Services/go-xmr-lib's
 // hashValidation.RXVerifier — a small real Go client for an external
 // RandomX-verification HTTP daemon ("randomx-service", default
 // http://127.0.0.1:39093) — it does NOT compute RandomX hashes in this

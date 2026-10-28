@@ -11,8 +11,8 @@ package db_test
 import (
 	"testing"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/db"
-	"github.com/Snipa22/go-crypto-pool/internal/coinprofile"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/db"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/coinprofile"
 )
 
 func TestValidCurrenciesIncludesEveryCoinProfileTicker(t *testing.T) {

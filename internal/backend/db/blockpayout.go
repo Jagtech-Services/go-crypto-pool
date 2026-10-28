@@ -26,7 +26,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/coinprofile"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/coinprofile"
 	"github.com/jackc/pgx/v5"
 )
 

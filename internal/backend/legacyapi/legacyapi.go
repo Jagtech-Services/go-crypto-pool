@@ -88,10 +88,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Snipa22/go-crypto-pool/internal/backend/addressmap"
-	"github.com/Snipa22/go-crypto-pool/internal/backend/networkapi"
-	"github.com/Snipa22/go-crypto-pool/internal/backend/statsapi"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/addressmap"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/networkapi"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/backend/statsapi"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 // DefaultAlgo is the algo every algo-scoped route in this package

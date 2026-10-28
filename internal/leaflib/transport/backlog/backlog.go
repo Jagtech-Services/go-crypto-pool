@@ -64,8 +64,8 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/Snipa22/go-crypto-pool/internal/leaflib/transport"
-	poolpb "github.com/Snipa22/go-crypto-pool/internal/proto"
+	"github.com/Jagtech-Services/go-crypto-pool/internal/leaflib/transport"
+	poolpb "github.com/Jagtech-Services/go-crypto-pool/internal/proto"
 )
 
 const (
